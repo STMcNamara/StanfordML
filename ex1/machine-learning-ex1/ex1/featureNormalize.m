@@ -6,7 +6,7 @@ function [X_norm, mu, sigma] = featureNormalize(X)
 %   working with learning algorithms.
 
 % Useful values
-m = size(X,1)
+m = size(X,1);
 
 % Compute mean and standard deviation
 mu = mean(X);
