@@ -6,8 +6,14 @@ function p = predict(theta, X)
 
 m = size(X, 1); % Number of training examples
 
-% You need to return the following variables correctly
-p = zeros(m, 1);
+% Compute z
+z = X * theta;
+
+% Compute the hypothesis vector
+h = sigmoid(z);
+
+% Predict 1 if h >= 0.5, 0 if <0.5
+p = (h >= 0.5);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the following code to make predictions using
