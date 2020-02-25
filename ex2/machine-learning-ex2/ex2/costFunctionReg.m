@@ -7,21 +7,28 @@ function [J, grad] = costFunctionReg(theta, X, y, lambda)
 % Initialize some useful values
 m = length(y); % number of training examples
 
-% You need to return the following variables correctly 
-J = 0;
-grad = zeros(size(theta));
+% Compute the z vector:
+z = X * theta;
 
-% ====================== YOUR CODE HERE ======================
-% Instructions: Compute the cost of a particular choice of theta.
-%               You should set J to the cost.
-%               Compute the partial derivatives and set grad to the partial
-%               derivatives of the cost w.r.t. each parameter in theta
+% Compute the hypothese vector h, by applying the sigmoid function
+h = sigmoid(z);
 
+% Compute the unregularised cost
+J_unreg = (1/m) * (-y' * log(h) - (1-y)' * log(1-h));
 
+% Set theta(0) equal to 0 and square
+theta_0 = theta;
+theta_0(1) = 0;
+theta_sq = theta_0' * theta_0;
 
+% Compute the regularization term
+J_reg = (lambda / (2 * m)) * theta_sq;
 
+% Combine for the regularized cost
+J = J_unreg + J_reg;
 
+% Compute the gradient for theta 1 through j using a vectorized implementation
+grad = ((1/m)*X')*(sigmoid(X*theta) - y) + (lambda / m) * theta_0;
 
-% =============================================================
 
 end
