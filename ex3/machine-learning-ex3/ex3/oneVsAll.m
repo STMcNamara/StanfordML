@@ -11,11 +11,22 @@ function [all_theta] = oneVsAll(X, y, num_labels, lambda)
 m = size(X, 1);
 n = size(X, 2);
 
-% You need to return the following variables correctly 
-all_theta = zeros(num_labels, n + 1);
-
 % Add ones to the X data matrix
 X = [ones(m, 1) X];
+
+% Set options for fminunc
+options = optimset('GradObj', 'on', 'MaxIter', 50);
+
+% Create a placeholder for all_theta
+all_theta = zeros(num_labels, n + 1);
+
+% Iterate for each label in y - TODO
+for label = 1:num_labels
+   % Create y_j - training data in form y_j is 0 or 1 for the label
+   label
+
+
+
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the following code to train num_labels
